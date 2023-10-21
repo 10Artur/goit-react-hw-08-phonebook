@@ -1,0 +1,15 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 5px);
+    background-color: aquamarine;
+}
+
+.title {
+    font-size: 48px;
+    text-align: center;
+    font-weight: 500;
+    color: rgb(53, 14, 197);
+    /* color: blueviolet; */
+}
