@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteContact, fetchContacts } from 'redux/operations';
+import { deleteContact, fetchContacts } from 'redux/contacts/operations';
 import {
   selectIsLoading,
   selectIsError,
   selectDisplayedContacts,
-} from 'redux/selectors';
+} from 'redux/contacts/selectors';
 import {
   ContactsListBtn,
   ContactsListItem,
