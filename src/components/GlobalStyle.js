@@ -45,21 +45,8 @@ body {
 `;
 
 export const Container = styled.div `
-  width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0px 2px 11px 3px rgba(0, 0, 0, 0.71);
-  /* padding-top: 50px;
-  padding-bottom: 30px; */
-  padding: 50px;
-`;
-
-export const AppTitle1 = styled.h1 `
-  text-align: center;
-`;
-
-export const AppTitle2 = styled.h2 `
-  text-align: left;
+  max-width: 1100px;
+  height: 100vh;
+  margin: 0 auto;
+  padding: 0 10px;
 `;

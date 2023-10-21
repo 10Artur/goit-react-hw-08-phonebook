@@ -1,16 +1,60 @@
-import { ContactForm } from './ContactsForm/ContactsForm';
-import { ContactsList } from './ContactsList/ContactsList';
-import { Filter } from './Filter/Filter';
-import { AppTitle1, AppTitle2, Container, GlobalStyle } from './GlobalStyle';
+import { useEffect, lazy } from 'react';
+import { useDispatch } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
+
+import { GlobalStyle, Container } from './GlobalStyle';
+import { Layout } from './Layout';
+import { PrivateRoute } from './PrivateRoute';
+import { RestrictedRoute } from './RestrictedRoute';
+import { refreshUser } from 'redux/auth/operations';
+import { useAuth } from 'hooks';
+
+const HomePage = lazy(() => import('../pages/Home/Home'));
+const RegisterPage = lazy(() => import('../pages/Register'));
+const LoginPage = lazy(() => import('../pages/Login'));
+const Contacts = lazy(() => import('../pages/Contacts/Contacts'));
 
 export const App = () => {
-  return (
+  const dispatch = useDispatch();
+  const { isRefreshing } = useAuth();
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
+  return isRefreshing ? (
+    <b>Refreshing user...</b>
+  ) : (
     <Container>
-      <AppTitle1>Phonebook</AppTitle1>
-      <ContactForm />
-      <AppTitle2>Contacts</AppTitle2>
-      <Filter />
-      <ContactsList />
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route
+            path="/register"
+            element={
+              <RestrictedRoute
+                redirectTo="/contacts"
+                component={<RegisterPage />}
+              />
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <RestrictedRoute
+                redirectTo="/contacts"
+                component={<LoginPage />}
+              />
+            }
+          />
+          <Route
+            path="/contacts"
+            element={
+              <PrivateRoute redirectTo="/login" component={<Contacts />} />
+            }
+          />
+        </Route>
+      </Routes>
       <GlobalStyle />
     </Container>
   );
