@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div `
   display: flex;
   justify-content: center;
-  background-color: rgb(188, 237, 220);
+  background-color: #00bfa6;
   height: 100vh;
   padding-top: 160px;
 `;
@@ -16,7 +16,7 @@ export const Form = styled.form `
   display: flex;
   flex-direction: column;
   gap: 12px;
-  background-color: rgb(55, 192, 220);
+  background-color: white;
   width: 400px;
   height: 320px;
   padding: 20px;
@@ -39,8 +39,14 @@ export const Button = styled.button `
   padding: 8px;
   width: 100px;
   margin: 0 auto;
-  background-color: rgb(15, 176, 120);
+  background-color: transparent;
   font-weight: 500;
   font-size: 18px;
-  color: aliceblue;
+  color: #00bfa6;
+  border: 1px solid #00bfa6;
+
+  &:hover {
+    color: rgb(255, 255, 255);
+    background-color: #00bfa6;
+  }
 `;
